@@ -1,0 +1,39 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Inter:wght@400;500;700&family=Caveat:wght@400;500;700&display=swap');
+
+@import "tailwindcss";
+
+/* Configuración en CSS para Tailwind v4 */
+@theme {
+  --color-light-bg: #FCFCFC;
+  --color-light-text: #0F0E06;
+  --color-light-primary: #000000;
+  --color-light-secondary: #222222;
+  --color-light-tertiary: #1DCD9F;
+  --color-light-accent: #169976;
+  
+  --color-dark-bg: #010104;
+  --color-dark-text: #eae9fc;
+  --color-dark-primary: #00A896;
+  --color-dark-secondary: #00C4A1;
+  --color-dark-tertiary: #4DDBC4;
+  --color-dark-accent: #FF8B41;
+  
+  --font-family-heading: Poppins, sans-serif;
+  --font-family-body: Inter, sans-serif;
+  --font-family-accent: Caveat, cursive;
+  
+  /* --spacing-padding: 16px;
+  --spacing-padding-lg: 24px;
+  --spacing-section: 48px;
+  --spacing-section-lg: 64px;
+  
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+  
+  --box-shadow-subtle: 0 2px 4px rgba(0,0,0,0.1);
+  --box-shadow-medium: 0 4px 12px rgba(0,0,0,0.15);
+  --box-shadow-strong: 0 8px 24px rgba(0,0,0,0.2); */
+}
+
