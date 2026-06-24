@@ -1,171 +1,182 @@
-# SaborCraft - Plataforma de Recetas Colaborativa
+# SaborCraft
 
-Bienvenido a **SaborCraft**, una plataforma web moderna donde usuarios pueden compartir, descubrir y valorar recetas culinarias de forma sencilla y comunitaria.
+SaborCraft es una plataforma web de recetas pensada para compartir, descubrir y valorar contenido culinario de forma sencilla. El proyecto combina un frontend en Vue 3 con una API en Node.js y MySQL, y está orientado a mostrar una solución full stack completa para portfolio.
 
-## Requisitos Previos
+## Resumen
 
-Antes de empezar, asegúrate de tener instalado:
+- Plataforma de recetas con registro, autenticación y perfiles de usuario.
+- Creación, edición, valoración y marcado como favorito de recetas.
+- Panel de administración para moderación y gestión de contenido.
+- Interfaz responsive adaptada a escritorio y móvil.
 
-- **Node.js** (v16 o superior) - [Descargar](https://nodejs.org/)
-- **npm** (viene con Node.js)
-- **MySQL** (v5.7 o superior) - [Descargar](https://www.mysql.com/downloads/)
-- **Git** (opcional pero recomendado)
 
-## Inicio Rápido
+## Stack tecnológico
 
-### Paso 1: Clonar o descargar el proyecto
+Frontend:
+- Vue 3
+- Vue Router
+- Vite
+- Tailwind CSS
+- Axios
 
-```bash
-# Si tienes Git
-git clone <url-del-repositorio>
-cd saborcraft
+Backend:
+- Node.js
+- Express
+- MySQL
+- mysql2
+- cors
+- dotenv
 
-# O simplemente descomprime la carpeta del proyecto
+## Estructura del proyecto
+
+```text
+saborcraft/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── router/
+│   │   ├── services/
+│   │   └── views/
+│   └── vite.config.js
+└── docs/
+	├── ANEXO-4_saborcraft_estructura.sql
+	└── ANEXO-4_saborcraft_datos.sql
 ```
 
-### Paso 2: Configurar la Base de Datos
+## Requisitos previos
 
-1. **Abre MySQL** (MySQL Workbench o línea de comandos)
+- Node.js 16 o superior
+- npm
+- MySQL 5.7 o superior
+- Git, opcional
 
-2. **Crea la base de datos:**
+## Instalación rápida
+
+### 1. Clona el repositorio
+
+```bash
+git clone <url-del-repositorio>
+cd saborcraft
+```
+
+### 2. Crea la base de datos e importa los datos
 
 ```sql
 CREATE DATABASE saborcraft CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 ```
 
-3. **Importa la estructura y datos:**
+Después importa los ficheros SQL de la carpeta `docs`:
 
 ```bash
-# En la terminal/CMD, ve a la carpeta del proyecto
-cd saborcraft/docs
-
-# Ejecuta primero la estructura
+cd docs
 mysql -u root -p saborcraft < ANEXO-4_saborcraft_estructura.sql
-
-# Luego los datos
 mysql -u root -p saborcraft < ANEXO-4_saborcraft_datos.sql
 ```
 
-> Nota: Si no tienes contraseña MySQL, quita `-p`
-
-### Paso 3: Configurar el Backend
+### 3. Configura el backend
 
 ```bash
-# Entra en la carpeta del backend
-cd saborcraft/backend
-
-# Instala las dependencias
+cd backend
 npm install
-
-# Crea el archivo .env con tus configuraciones
-# (Copia el contenido de abajo en un archivo llamado .env)
 ```
 
-**Contenido del archivo `.env` (backend):**
+Crea un archivo `.env` dentro de `backend` con este contenido:
 
-```
+```env
 DB_HOST=localhost
+DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=tu_contraseña_mysql
-DB_DATABASE=saborcraft
-DB_PORT=3306
+DB_NAME=saborcraft
 
 PORT=3000
 NODE_ENV=development
+CORS_ORIGIN=http://localhost:5173
 ```
 
-
-### Paso 4: Configurar el Frontend
+### 4. Configura el frontend
 
 ```bash
-# Abre otra terminal y entra en la carpeta del frontend
-cd saborcraft/frontend
-
-# Instala las dependencias
+cd frontend
 npm install
 ```
 
-## Ejecutar el Proyecto
+## Cómo ejecutar el proyecto
 
-### Terminal 1 - Backend
+Abre dos terminales.
+
+Terminal 1, backend:
 
 ```bash
-cd saborcraft/backend
+cd backend
 npm start
 ```
 
-Deberías ver:
-```
-✓ Servidor escuchando en puerto 3000
-✓ Conexión a base de datos establecida
-```
-
-### Terminal 2 - Frontend
+Terminal 2, frontend:
 
 ```bash
-cd saborcraft/frontend
+cd frontend
 npm run dev
 ```
 
-Deberías ver algo como:
-```
-VITE v5.x.x  ready in XXX ms
+Una vez levantado, accede a:
 
-➜  Local:   http://localhost:5173/
-```
+- Frontend: http://localhost:5173
+- API: http://localhost:3000
 
-### Listo
+## Scripts disponibles
 
-Abre tu navegador y ve a:
-- **Frontend**: `http://localhost:5173`
-- **Backend API**: `http://localhost:3000/api`
+Backend:
 
-## Credenciales de Prueba
+- `npm start`: arranca el servidor
+- `npm run dev`: arranca con nodemon
+- `npm test`: comprueba la conexión con la base de datos
 
-Puedes usar estas cuentas para probar:
+Frontend:
 
-| Usuario | Email | Contraseña | Tipo |
-|---------|-------|-----------|------|
-| admin | admin@example.com | admin | Administrador |
-| baraja24 | user1@example.com | 1234 | Usuario Normal |
+- `npm run dev`: inicia Vite en modo desarrollo
+- `npm run build`: genera la versión de producción
+- `npm run preview`: previsualiza la build localmente
 
+## Funcionalidades destacadas
 
-## Funcionalidades Principales
+- Registro e inicio de sesión
+- Gestión de recetas
+- Valoraciones con estrellas
+- Favoritos
+- Buscador y filtros
+- Perfil de usuario
+- Panel de administración
+- Validaciones y protección de rutas
 
-- **Autenticación** - Login/Registro con JWT
-- **CRUD de Recetas** - Crear, leer, editar, borrar
-- **Sistema de Valoraciones** - Rating con estrellas (1-5)
-- **Favoritos** - Marcar recetas como favoritas
-- **Búsqueda y Filtros** - Por categoría, ingredientes, etc
-- **Perfil de Usuario** - Ver y editar información
-- **Panel de Admin** - Gestionar recetas, categorías, usuarios
-- **Responsive Design** - Funciona en desktop, tablet y móvil  
+## Rutas principales
 
-## Tecnologías Utilizadas
+- `/` inicio
+- `/recipes` listado de recetas
+- `/recipes/:id` detalle de receta
+- `/recipes/create` crear receta
+- `/recipes/:id/edit` editar receta
+- `/login` acceso
+- `/register` registro
+- `/profile` perfil
+- `/profile/edit` edición de perfil
+- `/admin` panel de administración
 
-**Backend:**
-- Node.js + Express.js
-- MySQL
-- JWT para autenticación
-- bcrypt para encriptación de contraseñas
+## Aprendizajes y valor de portfolio
 
-**Frontend:**
-- Vue.js 3 (Composition API)
-- Vite (bundler)
-- Tailwind CSS (estilos)
-- Axios (peticiones HTTP)
-- Vue Router (navegación)
+Este proyecto me permitió trabajar con una arquitectura completa de frontend y backend, integrar autenticación, diseñar una base de datos relacional, gestionar formularios complejos y construir una experiencia responsive. Es una buena pieza para portfolio porque muestra trabajo real sobre una aplicación funcional de principio a fin.
 
-### Modo Debug
-En la consola del navegador (F12) puedes ver las peticiones API en la pestaña Network.
+## Autor
 
+José Antonio Benítez Ruiz
 
 ## Licencia
 
-Proyecto educativo - Ciclo Superior de Desarrollo de Aplicaciones Web (DAW)
-
-Autor: **José Antonio Benítez Ruiz**
-
----
-
-Disfruta usando SaborCraft.
+Proyecto educativo del Ciclo Superior de Desarrollo de Aplicaciones Web (DAW).
